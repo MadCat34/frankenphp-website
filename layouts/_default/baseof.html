@@ -84,5 +84,51 @@
         });
       });
     </script>
+
+    <script>
+      const userPrefersDark = () =>
+        window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+      function applyTheme(theme) {
+        if (theme === 'dark') {
+          document.documentElement.classList.add('dark');
+        } else if (theme === 'light') {
+          document.documentElement.classList.remove('dark');
+        } else {
+          // auto
+          userPrefersDark()
+            ? document.documentElement.classList.add('dark')
+            : document.documentElement.classList.remove('dark');
+        }
+      }
+
+      function setTheme(theme) {
+        localStorage.setItem('theme', theme);
+        applyTheme(theme);
+      }
+
+      function handleManualToggle(checkbox) {
+        setTheme(checkbox.checked ? 'dark' : 'light');
+      }
+
+      // Initialisation
+      function initTheme() {
+        const stored = localStorage.getItem('theme');
+        const theme = stored || 'auto';
+        applyTheme(theme);
+
+        // Synchroniser checkbox si nécessaire
+        const toggle = document.getElementById('darkmode-toggle');
+        toggle.checked = (theme === 'dark');
+      }
+
+      // Écoute les changements système si mode auto
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+        if (localStorage.getItem('theme') === 'auto') applyTheme('auto');
+      });
+
+      // Appliquer à l'initialisation
+      initTheme();
+    </script>
   </body>
 </html>
