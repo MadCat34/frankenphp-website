@@ -10,4 +10,12 @@ footer:
   sponsor: "%sponsor% tarafından desteklenir"
 nav:
   official: "Bu sayfa topluluk tarafından çevrilmiştir ve güncel olmayabilir. <strong class='underline'>Referans versiyonuna</strong> (İngilizce) bakın."
-
+theme:
+  switch: parlaklığı değiştir
+  light: açık mod
+  dark: koyu mod
+  auto: otomatik mod
+  tooltip:
+    light: açık modu etkinleştir
+    dark: koyu modu etkinleştir
+    auto: otomatik modu etkinleştir

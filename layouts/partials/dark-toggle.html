@@ -1,58 +1,83 @@
 <div class="relative hidden lg:block">
+  <!-- Checkbox pour ouvrir/fermer le menu -->
   <input
+    class="invisible absolute pointer-events-none peer"
     type="checkbox"
     id="darkmode-toggle"
-    class="invisible absolute pointer-events-none peer"
+    name="darkmode-toggle"
     aria-label="Toggle Dark Mode"
-    onchange="handleManualToggle(this)"
   />
-
+  <!-- Overlay -->
   <label
     for="darkmode-toggle"
     class="fixed top-0 left-0 w-screen h-screen bg-black opacity-50 z-10 hidden peer-checked:block"
   ></label>
 
+  <!-- Bouton principal -->
   <label
     for="darkmode-toggle"
-    class="flex flex-row gap-2 items-center cursor-pointer group px-4 py-2"
+    class="flex flex-row gap-1 flex-1 lg:py-2 lg:pl-4 cursor-pointer group"
   >
-    <!-- Soleil -->
-    <svg class="w-6 h-6 text-yellow-500 dark:hidden" xmlns="http://www.w3.org/2000/svg" fill="none"
-         viewBox="0 0 24 24" stroke="currentColor">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            d="M12 3v1m0 16v1m8.485-8.485h1M3.515 12.515h1m15.364 5.657l-.707-.707M5.636 5.636l-.707-.707m12.728 0l-.707.707M5.636 18.364l-.707.707M12 5a7 7 0 000 14 7 7 0 000-14z" />
-    </svg>
-
-    <!-- Lune -->
-    <svg class="w-6 h-6 hidden dark:block text-white" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-         viewBox="0 0 24 24">
-      <path d="M21 12.79A9 9 0 0111.21 3 7 7 0 0012 21a9 9 0 009-8.21z" />
+    <img id="theme-icon" src="/img/theme/setting-icon.svg" alt="Theme icon" class="w-6 h-6" />
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      class="w-6 h-6 peer-checked:group-[]:-scale-y-100"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="m19.5 8.25-7.5 7.5-7.5-7.5"
+      />
     </svg>
   </label>
 
+  <!-- Menu -->
   <div
-    class="absolute right-0 top-full bg-white dark:bg-gray-900 py-4 text-gray-700 dark:text-gray-200 rounded-xl w-max shadow-xl hidden peer-checked:block z-20">
-    <label for="darkmode-toggle" class="px-6 pb-2 text-xs uppercase text-gray-400 dark:text-gray-500">
-      Thème
+    class="absolute right-0 top-full bg-white dark:bg-gray-900 py-4 text-gray-700 dark:text-gray-200 rounded-xl w-max min-w-[150px] shadow-xl hidden peer-checked:block z-20"
+  >
+    <label
+      for="darkmode-toggle"
+      class="px-6 pb-2 text-xs text-gray-400 dark:text-gray-500 uppercase"
+    >
+      {{ i18n "theme.switch" }}
     </label>
-    <ul class="flex flex-col">
+    <ul class="flex flex-col" id="theme-options">
       <li>
-        <button
-          class="px-6 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700 w-full"
-          onclick="setTheme('light')"
-        >☀️ Clair</button>
+        <a href="#"
+           class="theme-option flex flex-row gap-2 py-2 px-6 items-center hover:bg-purple-dark/10"
+           data-theme="light"
+        >
+          <img class="w-5 h-5" src="/img/theme/sun-icon.svg" />
+          <span class="text-xs uppercase font-bold">
+            {{ i18n "theme.light" }}
+          </span>
+        </a>
       </li>
       <li>
-        <button
-          class="px-6 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700 w-full"
-          onclick="setTheme('dark')"
-        >🌙 Sombre</button>
+        <a href="#"
+           class="theme-option flex flex-row gap-2 py-2 px-6 items-center hover:bg-purple-dark/10"
+           data-theme="dark"
+        >
+          <img class="w-5 h-5" src="/img/theme/moon-icon.svg" />
+          <span class="text-xs uppercase font-bold">
+            {{ i18n "theme.dark" }}
+          </span>
+        </a>
       </li>
       <li>
-        <button
-          class="px-6 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700 w-full"
-          onclick="setTheme('auto')"
-        >🖥️ Automatique</button>
+        <a href="#"
+           class="theme-option flex flex-row gap-2 py-2 px-6 items-center hover:bg-purple-dark/10"
+           data-theme="auto"
+        >
+          <img class="w-5 h-5" src="/img/theme/setting-icon.svg" />
+          <span class="text-xs uppercase font-bold">
+            {{ i18n "theme.auto" }}
+          </span>
+        </a>
       </li>
     </ul>
   </div>

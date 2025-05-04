@@ -10,3 +10,12 @@ footer:
   sponsor: "Sponsorisé par %sponsor%"
 nav:
   official: "Cette page a été traduite par la communauté et n'est pas forcément à jour. Consultez <strong class='underline'>la version de référence</strong> (en anglais)."
+theme:
+  switch: Modifier la luminosité
+  light: Mode clair
+  dark: Mode sombre
+  auto: Mode automatique
+  tooltip:
+    light: Activer le mode clair
+    dark: Activer le mode sombre
+    auto: Activer le mode automatique

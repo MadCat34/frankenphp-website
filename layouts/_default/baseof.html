@@ -35,6 +35,9 @@
     <link rel="manifest" href="/manifest.webmanifest" />
     <link rel="stylesheet" href="/style/output.css" />
     <link rel="stylesheet" href="/style/syntax.css" />
+    <link rel="stylesheet" href="/style/dark.css" />
+
+
     <script src="/js/parallax.js"></script>
     <link
       href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
@@ -86,20 +89,39 @@
     </script>
 
     <script>
-      const userPrefersDark = () =>
-        window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const themeIcon = document.getElementById('theme-icon');
+      const themeOptions = document.querySelectorAll('.theme-option');
+
+      const iconMap = {
+        light: '/img/theme/sun-icon.svg',
+        dark: '/img/theme/moon-icon.svg',
+        auto: '/img/theme/setting-icon.svg'
+      };
+
+      const prefersDark = () => window.matchMedia('(prefers-color-scheme: dark)').matches;
 
       function applyTheme(theme) {
+        const html = document.documentElement;
+
         if (theme === 'dark') {
-          document.documentElement.classList.add('dark');
+          html.classList.add('dark');
         } else if (theme === 'light') {
-          document.documentElement.classList.remove('dark');
+          html.classList.remove('dark');
         } else {
-          // auto
-          userPrefersDark()
-            ? document.documentElement.classList.add('dark')
-            : document.documentElement.classList.remove('dark');
+          prefersDark()
+            ? html.classList.add('dark')
+            : html.classList.remove('dark');
         }
+
+        themeIcon.src = iconMap[theme];
+        themeIcon.alt = `${theme} mode`;
+
+        themeOptions.forEach(opt => {
+          opt.classList.remove('bg-purple-dark/10', 'bg-gray-200', 'dark:bg-gray-800');
+          if (opt.dataset.theme === theme) {
+            opt.classList.add('bg-purple-dark/10', 'dark:bg-gray-800');
+          }
+        });
       }
 
       function setTheme(theme) {
@@ -107,27 +129,23 @@
         applyTheme(theme);
       }
 
-      function handleManualToggle(checkbox) {
-        setTheme(checkbox.checked ? 'dark' : 'light');
-      }
-
-      // Initialisation
       function initTheme() {
-        const stored = localStorage.getItem('theme');
-        const theme = stored || 'auto';
-        applyTheme(theme);
-
-        // Synchroniser checkbox si nécessaire
-        const toggle = document.getElementById('darkmode-toggle');
-        toggle.checked = (theme === 'dark');
+        const stored = localStorage.getItem('theme') || 'auto';
+        applyTheme(stored);
       }
 
-      // Écoute les changements système si mode auto
+      themeOptions.forEach(option => {
+        option.addEventListener('click', e => {
+          e.preventDefault();
+          setTheme(option.dataset.theme);
+          document.getElementById('darkmode-toggle').checked = false; // Ferme le menu
+        });
+      });
+
       window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
         if (localStorage.getItem('theme') === 'auto') applyTheme('auto');
       });
 
-      // Appliquer à l'initialisation
       initTheme();
     </script>
   </body>

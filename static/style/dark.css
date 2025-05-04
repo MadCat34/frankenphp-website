@@ -1,0 +1,59 @@
+/* === Dark Mode Overrides === */
+
+html.dark {
+    background-color: #1f2937;
+    color: #f3f4f6;
+}
+
+/* Exemple de fond clair -> sombre */
+html.dark .bg-white { background-color: #1f2937 !important; }
+html.dark .bg-gray-100 { background-color: #111827 !important; }
+
+/* Texte clair sur fond foncé */
+html.dark .text-gray-700 { color: #d1d5db !important; }
+html.dark .text-gray-400 { color: #9ca3af !important; }
+
+/* Bordures */
+html.dark .border-gray-300 { border-color: #4b5563 !important; }
+html.dark .border-b-gray-200 { border-bottom-color: #374151 !important; }
+
+/* Couleurs spécifiques remplacées */
+html.dark .from-[#b3d133] { --tw-gradient-from: #c1dc5d !important; }
+html.dark .bg-[#390075] { background-color: #a581ff !important; }
+html.dark .bg-[#230143] { background-color: #592a8c !important; }
+
+/* Prose (si Tailwind typography) */
+html.dark .prose {
+    --tw-prose-body: #d1d5db;
+    --tw-prose-headings: #f3f4f6;
+    --tw-prose-lead: #9ca3af;
+    --tw-prose-links: #93c5fd;
+    --tw-prose-bold: #f3f4f6;
+    --tw-prose-counters: #9ca3af;
+    --tw-prose-bullets: #6b7280;
+    --tw-prose-hr: #374151;
+    --tw-prose-quotes: #e5e7eb;
+    --tw-prose-quote-borders: #4b5563;
+    --tw-prose-captions: #9ca3af;
+    --tw-prose-code: #f9fafb;
+    --tw-prose-pre-bg: #1e1e2e;
+    --tw-prose-th-borders: #4b5563;
+    --tw-prose-td-borders: #374151;
+}
+
+/* Chroma / Syntax Highlighting */
+html.dark .chroma {
+    background-color: #1e1e2e;
+    color: #f8f8f2;
+}
+html.dark .chroma .hl { background-color: #3d3f4a; }
+html.dark .chroma .k, .kn, .kr, .kt { color: #ff79c6; }
+html.dark .chroma .kd, .nb, .nl, .nv { color: #8be9fd; font-style: italic; }
+html.dark .chroma .nf, .nc, .na { color: #50fa7b; }
+html.dark .chroma .s, .sa, .sb, .s1, .s2 { color: #f1fa8c; }
+html.dark .chroma .m { color: #bd93f9; }
+html.dark .chroma .c, .cm, .ch, .c1 { color: #6272a4; }
+html.dark .chroma .cp, .cpf { color: #ff79c6; }
+html.dark .chroma .gi { color: #50fa7b; font-weight: bold; }
+html.dark .chroma .gd { color: #ff5555; }
+html.dark .chroma .go { color: #b7bbd4; }

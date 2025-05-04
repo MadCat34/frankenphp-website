@@ -12,3 +12,12 @@ nav:
   official: "
 157 / 5 000
 This page has been translated by the community and may not be up to date. See <strong class='underline'>the reference version</strong>."
+theme:
+  switch: Change brightness
+  light: Light mode
+  dark: Dark mode
+  auto: Automatic mode
+  tooltip:
+    light: Activate light mode
+    dark: Activate dark mode
+    auto: Activate automatic mode
